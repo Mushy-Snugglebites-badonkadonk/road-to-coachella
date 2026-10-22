@@ -16,7 +16,7 @@ assets retain their own licenses.
 
 - License summary: https://creativecommons.org/licenses/by-nc/4.0/
 - Official full legal code: https://creativecommons.org/licenses/by-nc/4.0/legalcode.en
-- `private/easter_egg.jpg` and `private/easter_egg.m4a`: credit **Easter Egg contributor**.
+- `private/easter_egg.jpg` and `private/easter_egg.m4a`: credit **Paris**.
   These are deliberately retained raw personal media, renamed only. Their
   inclusion in a public source repository is intentional, not anonymization.
 - `public/og-road-to-desert-v3.png`: project preview artwork supplied for the

@@ -11,7 +11,8 @@ downgrade, or vinext major migration was used.
 
 | Dependency / family | Reviewed installed version |
 | --- | --- |
-| Next.js + Next ESLint config/plugin | 16.3.8 |
+| Next.js + Next ESLint config/plugin | 16.4.2 |
+| Vite | 8.1.6 (exact pin) |
 | React, React DOM, react-server-dom-webpack | matched 19.2.8 |
 | Cloudflare Vite plugin | 1.63.1 |
 | Wrangler | 4.149.0 |
@@ -36,11 +37,33 @@ patched through a compatible 2.x override without a framework major update.
 Published vinext 1.1.0 still depends on vite-plugin-commonjs ^0.10.4 and therefore
 would not eliminate the remaining glob-parser chain merely by upgrading.
 
-## Current audit result
+## Narrow follow-up verified 2026-10-22
 
-- Original full graph: **28 affected packages** (1 critical, 22 high, 5 moderate).
-- Remediated full graph: **8 affected packages**, all high; 0 critical, 0 moderate.
-- `npm audit --omit=dev`: **0 affected packages**.
+New Next.js and Vite advisories appeared after the earlier remediation. The
+follow-up updates only Next.js and its matched ESLint configuration/plugin to
+16.4.2, the required matched Next.js environment/SWC packages, and Vite to
+8.1.6. Vite is now pinned exactly instead of using a caret range. The lockfile
+delta contains 13 package records plus the root manifest record; all unrelated
+resolved packages, existing overrides, React/RSC versions, vinext, Cloudflare
+tooling, application code, and tests remain unchanged.
+
+The candidate passed a clean-install dry run, a real standard `npm ci`, lint,
+TypeScript, all 32 tests, a production build, and 29 local runtime assertions
+covering unconfigured/configured operation, authorization, mutation limits,
+same-origin enforcement, and disabled/enabled private media. Runtime smoke used
+synthetic data and loopback-only development/Worker instances; it is not live
+deployment, public gateway authentication, or production-origin validation.
+
+## Audit result as of 2026-10-22
+
+- Historical original full graph: **28 affected packages** (1 critical, 22 high,
+  5 moderate).
+- Immediately before this follow-up: **10 affected package entries** (1 critical,
+  9 high), including newly reported Next.js/Vite findings.
+- After the follow-up: **8 affected package entries**, all high; 0 critical,
+  0 moderate. All scoped Next.js and Vite advisory IDs are absent.
+- `npm audit --omit=dev`: **0 affected packages** after this follow-up, versus
+  one critical affected package immediately before it.
 
 The complete-graph audit is the authoritative residual disclosure. An
 `--omit=dev` audit alone is not an audit of a bundled Worker: development-declared
@@ -54,7 +77,7 @@ deeply nested patterns; affected range `<=3.0.3`.
 
 https://github.com/advisories/GHSA-vfj7-8cjw-p6xm
 
-The official registry's latest `braces` version at the check was still 3.0.3.
+The official registry's latest `braces` version on 2026-10-22 was still 3.0.3.
 The eight package-level reports are one leaf plus propagated parents:
 
 - braces
@@ -84,9 +107,11 @@ build; that lexical observation supplements, but does not prove, reachability.
 **Residual risk:** a malicious/deeply nested build/lint glob or untrusted source
 can still cause toolchain denial of service. Keep development endpoints private
 and do not lint/build untrusted source or accept arbitrary glob expressions.
-Production handlers do not intentionally call this parser; independent review
-is still required before accepting the risk. The repository does not claim a
-clean full audit or guaranteed non-exploitability.
+Production handlers do not intentionally call this parser. Independent review
+of the dependency delta does not accept this residual risk on behalf of a
+maintainer: explicit acceptance or a verified fix is still required before
+publication/deployment. The repository does not claim a clean full audit or
+guaranteed non-exploitability.
 
 npm's `fixAvailable` suggests downgrading ESLint config to 14.2.35 and vinext to
 0.0.15. Those are not compatible patched parser releases and were deliberately

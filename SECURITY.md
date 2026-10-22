@@ -83,24 +83,32 @@ are intentionally empty even if local `.env` contains secrets.
 
 ## Dependency advisories
 
-The inherited full dependency graph initially reported 28 affected packages,
-including a critical Next.js report. Compatible verified updates now clear all
-critical/moderate findings and the fixable runtime leaves: Next.js 16.3.8,
-matched React/React DOM/RSC 19.2.8, patched image-size, sharp, fast-uri, PostCSS,
-and the Cloudflare toolchain. The current full audit reports **8 high affected
-packages propagated from one unresolved braces 3.0.3 advisory**; the production
-manifest-only audit reports zero. The remaining dependency is used by ESLint
-root-directory globbing and Vite build-time dynamic-import transforms, not by
-an application payment/media handler. This is a reachability assessment, not
-proof of total non-exploitability or a waiver. See `DEPENDENCIES.md` for chains,
-registry evidence, and restrictions.
+As of **2026-10-22**, the verified source candidate uses Next.js and matched
+Next ESLint tooling **16.4.2**, plus Vite **8.1.6**, to clear the newly reported
+Next.js/Vite advisory IDs. React/React DOM/RSC remain matched at 19.2.8; existing
+image-size, sharp, fast-uri, PostCSS, and Cloudflare fixes are preserved. The
+follow-up full audit reports **8 high affected package entries propagated from
+one unresolved braces 3.0.3 advisory**, with zero critical/moderate findings;
+the production-only audit reports zero. Immediately before the follow-up the
+full audit reported 10 entries (1 critical, 9 high), and the production-only
+audit reported one critical entry. Audit counts are time-bound inventory,
+not proof that an existing deployment has been updated.
+
+The remaining dependency is used by ESLint root-directory globbing and Vite
+build-time dynamic-import transforms, not intentionally by an application
+payment/media handler. This is a reachability assessment, not proof of total
+non-exploitability or a waiver. A production-only audit excludes development-
+declared dependencies that may still contribute bundled runtime code; the
+complete graph is the authoritative residual disclosure. See `DEPENDENCIES.md`
+for chains, registry evidence, verification scope, and restrictions.
 
 The registry's latest braces release remains affected; npm's offered remedy is
 a framework/linter downgrade, not a patched leaf. No unreviewed parser patch or
 breaking downgrade is hidden in this release. Do not run build/lint against
-untrusted source/glob input or expose dev tooling. Independently review this
-residual before deployment; maintainers must decide acceptance or await an
-upstream fix. Re-run the complete `npm audit` before every release and do not
+untrusted source/glob input or expose dev tooling. Independent delta review is
+not risk acceptance: publication/deployment still requires a maintainer's
+explicit acceptance of this residual or a verified upstream fix. Re-run the
+complete `npm audit` before every release and do not
 substitute passing lint/tests/build for dependency security review.
 
 ## Reporting

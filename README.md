@@ -219,7 +219,7 @@ Code and documentation: **MIT**, copyright 2026
 files are **CC BY-NC 4.0**, with scope, permissions, and attribution in
 [ASSET-LICENSE.md](ASSET-LICENSE.md). Preview graphics remain under MIT, subject
 to retained third-party notices.
-The retained raw media is credited to **Easter Egg contributor**; this release
+The retained raw media is credited to **Paris**; this release
 does not invent creator identities or assert independently verified ownership.
 Commercial code reuse is allowed under MIT; replace the noncommercial media or
 obtain separate permission for commercial media use. Third-party packages keep
