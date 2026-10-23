@@ -13,6 +13,45 @@ before exposing it to the Internet. The pinned experimental toolchain has a disc
 parser advisory; passing CI does not mean the complete dependency graph is
 clean. See [DEPENDENCIES.md](DEPENDENCIES.md) for verified remediation and scope.
 
+## Preview
+
+Actual screenshots of the template running locally with **fictional demo data**.
+Names, amounts, dates, and payment records are illustrative, not real financial
+information. The optional photo/audio easter egg is disabled. These previews do
+not demonstrate production authentication or a live deployment.
+
+### Desktop dashboard
+
+![Desktop dashboard with a desert-colored interface, a 50-percent progress ring, $600 of a fictional $1,200 total paid, and a next-installment card.](docs/screenshots/dashboard-desktop.png)
+
+<details>
+<summary>More previews: charts, owner controls, mobile, sign-in, and link-preview artwork</summary>
+
+### Payment charts
+
+![Dark payment-charts section showing four illustrative monthly payments and a cumulative progress chart.](docs/screenshots/payments-desktop.png)
+
+### Owner payment management
+
+![Owner management console showing a fictional pending submission and four approved entries, with approve, reject, edit, and delete controls.](docs/screenshots/management-desktop.png)
+
+### Mobile layout
+
+<img src="docs/screenshots/dashboard-mobile.png" alt="Responsive mobile dashboard with the same fictional payment summary and progress ring stacked below the heading." width="390" />
+
+### Invitation-only sign-in
+
+![Invitation-only sign-in screen with the heading The desert is just ahead and a Sign in with ChatGPT button.](docs/screenshots/invitation-desktop.png)
+
+### Web-link preview artwork
+
+The existing artwork referenced by the app's Open Graph and social-card metadata.
+This is promotional artwork, **not a screenshot of the interface**.
+
+![Road to the Desert — Coachella 2027: a dark sedan on a desert highway at sunset, with mountains, palm trees, and a distant Ferris wheel.](public/og-road-to-desert-v3.png)
+
+</details>
+
 ## Fresh-clone setup
 
 Use Node **22.22.3** (the version in `.nvmrc`) and npm 10.9.8 or a compatible npm
